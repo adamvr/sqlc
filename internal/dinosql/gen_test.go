@@ -46,6 +46,12 @@ func TestColumnsToStruct(t *testing.T) {
 			DataType: "text",
 			IsArray:  true,
 		},
+		{
+			Name:     "unrenamed",
+			DataType: "text",
+			NotNull:  true,
+			Comment:  "-- name: Renamed\n-- json: renamed\n-- Renamed should be renamed",
+		},
 	}
 
 	// all of the columns are on the 'foo' table
@@ -87,6 +93,7 @@ func TestColumnsToStruct(t *testing.T) {
 			{Name: "ByteSeq", Type: "[]byte", Tags: map[string]string{"json:": "byte_seq"}},
 			{Name: "Retyped", Type: "pkg.CustomType", Tags: map[string]string{"json:": "retyped"}},
 			{Name: "Languages", Type: "pq.StringArray", Tags: map[string]string{"json:": "languages"}},
+			{Name: "Renamed", Type: "string", Tags: map[string]string{"json:": "renamed"}, Comment: "Renamed should be renamed"},
 		},
 	}
 	if diff := cmp.Diff(expected, actual); diff != "" {

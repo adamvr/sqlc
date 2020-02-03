@@ -460,6 +460,63 @@ func StructName(name string, settings GenerateSettings) string {
 	return out
 }
 
+func FieldName(columnName, commentName string, settings GenerateSettings) string {
+	if rename := settings.Rename[columnName]; rename != "" {
+		return rename
+	}
+
+	if commentName != "" {
+		return commentName
+	}
+
+	out := ""
+	for _, p := range strings.Split(columnName, "_") {
+		if p == "id" {
+			out += "ID"
+		} else {
+			out += strings.Title(p)
+		}
+	}
+	return out
+}
+
+func FieldJSONName(columnName, commentName string) string {
+	if commentName != "" {
+		return commentName
+	}
+
+	return columnName
+}
+
+func CommentToMeta(comment string) (map[string]string, string) {
+	meta := make(map[string]string)
+	trimmed := []string{}
+
+	for _, kv := range strings.Split(comment, "\n") {
+		decomment := strings.TrimLeft(kv, "- ")
+
+		if !strings.HasPrefix(decomment, "name:") && !strings.HasPrefix(decomment, "json:") {
+			trimmed = append([]string{decomment}, trimmed...)
+			continue
+		}
+
+		kv := strings.Split(decomment, ":")
+
+		if len(kv) < 2 {
+			continue
+		}
+
+		k := strings.Trim(kv[0], " :-\t\n\r")
+		v := strings.Trim(kv[1], " :-\t\n\r")
+
+		meta[k] = v
+	}
+
+	fmt.Println(comment, meta, trimmed)
+
+	return meta, strings.Join(trimmed, "\n")
+}
+
 func (r Result) Structs(settings GenerateSettings) []GoStruct {
 	var structs []GoStruct
 	for name, schema := range r.Catalog.Schemas {
@@ -478,12 +535,15 @@ func (r Result) Structs(settings GenerateSettings) []GoStruct {
 				Name:    inflection.Singular(StructName(tableName, settings)),
 				Comment: table.Comment,
 			}
+
 			for _, column := range table.Columns {
+				meta, trimmed := CommentToMeta(column.Comment)
+
 				s.Fields = append(s.Fields, GoField{
-					Name:    StructName(column.Name, settings),
+					Name:    FieldName(column.Name, meta["name"], settings),
 					Type:    r.goType(column, settings),
-					Tags:    map[string]string{"json:": column.Name},
-					Comment: column.Comment,
+					Tags:    map[string]string{"json:": FieldJSONName(column.Name, meta["json"])},
+					Comment: trimmed,
 				})
 			}
 			structs = append(structs, s)
@@ -656,16 +716,20 @@ func (r Result) columnsToStruct(name string, columns []core.Column, settings Gen
 	}
 	seen := map[string]int{}
 	for i, c := range columns {
-		tagName := c.Name
-		fieldName := StructName(columnName(c, i), settings)
+		meta, trimmed := CommentToMeta(c.Comment)
+
+		tagName := FieldJSONName(c.Name, meta["json"])
+		fieldName := FieldName(columnName(c, i), meta["name"], settings)
 		if v := seen[c.Name]; v > 0 {
 			tagName = fmt.Sprintf("%s_%d", tagName, v+1)
 			fieldName = fmt.Sprintf("%s_%d", fieldName, v+1)
 		}
+
 		gs.Fields = append(gs.Fields, GoField{
-			Name: fieldName,
-			Type: r.goType(c, settings),
-			Tags: map[string]string{"json:": tagName},
+			Name:    fieldName,
+			Type:    r.goType(c, settings),
+			Tags:    map[string]string{"json": tagName},
+			Comment: trimmed,
 		})
 		seen[c.Name]++
 	}
