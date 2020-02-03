@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/kyleconroy/sqlc/internal/catalog"
-	"github.com/kyleconroy/sqlc/internal/pg"
+	"github.com/adamvr/sqlc/internal/catalog"
+	"github.com/adamvr/sqlc/internal/pg"
 	nodes "github.com/lfittl/pg_query_go/nodes"
 )
 

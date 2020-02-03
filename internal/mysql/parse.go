@@ -7,7 +7,7 @@ import (
 	"path/filepath"
 
 	"github.com/davecgh/go-spew/spew"
-	"github.com/kyleconroy/sqlc/internal/dinosql"
+	"github.com/adamvr/sqlc/internal/dinosql"
 	"vitess.io/vitess/go/vt/sqlparser"
 )
 

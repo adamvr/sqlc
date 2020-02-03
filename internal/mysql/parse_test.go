@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/kyleconroy/sqlc/internal/dinosql"
+	"github.com/adamvr/sqlc/internal/dinosql"
 	"vitess.io/vitess/go/vt/sqlparser"
 )
 

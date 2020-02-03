@@ -5,7 +5,7 @@ import (
 	"database/sql"
 	"testing"
 
-	"github.com/kyleconroy/sqlc/internal/sqltest"
+	"github.com/adamvr/sqlc/internal/sqltest"
 )
 
 func TestAuthors(t *testing.T) {

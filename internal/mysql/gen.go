@@ -7,8 +7,8 @@ import (
 	"strings"
 
 	"github.com/jinzhu/inflection"
-	"github.com/kyleconroy/sqlc/internal/dinosql"
-	core "github.com/kyleconroy/sqlc/internal/pg"
+	"github.com/adamvr/sqlc/internal/dinosql"
+	core "github.com/adamvr/sqlc/internal/pg"
 	"vitess.io/vitess/go/vt/sqlparser"
 )
 

@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"testing"
 
-	core "github.com/kyleconroy/sqlc/internal/pg"
+	core "github.com/adamvr/sqlc/internal/pg"
 
 	"github.com/google/go-cmp/cmp"
 	pg "github.com/lfittl/pg_query_go"

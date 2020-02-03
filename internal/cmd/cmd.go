@@ -10,8 +10,8 @@ import (
 	"os/exec"
 	"path/filepath"
 
-	"github.com/kyleconroy/sqlc/internal/dinosql"
-	"github.com/kyleconroy/sqlc/internal/mysql"
+	"github.com/adamvr/sqlc/internal/dinosql"
+	"github.com/adamvr/sqlc/internal/mysql"
 
 	"github.com/davecgh/go-spew/spew"
 	pg "github.com/lfittl/pg_query_go"

@@ -13,7 +13,7 @@ import (
 	"text/template"
 	"unicode"
 
-	core "github.com/kyleconroy/sqlc/internal/pg"
+	core "github.com/adamvr/sqlc/internal/pg"
 
 	"github.com/jinzhu/inflection"
 )

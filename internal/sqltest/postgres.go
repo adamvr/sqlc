@@ -10,7 +10,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/kyleconroy/sqlc/internal/dinosql"
+	"github.com/adamvr/sqlc/internal/dinosql"
 
 	_ "github.com/lib/pq"
 )

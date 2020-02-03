@@ -9,8 +9,8 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/kyleconroy/sqlc/internal/dinosql"
-	"github.com/kyleconroy/sqlc/internal/mysql"
+	"github.com/adamvr/sqlc/internal/dinosql"
+	"github.com/adamvr/sqlc/internal/mysql"
 )
 
 func TestCodeGeneration(t *testing.T) {

@@ -5,7 +5,7 @@ import (
 	"testing"
 
 	"github.com/google/go-cmp/cmp"
-	"github.com/kyleconroy/sqlc/internal/pg"
+	"github.com/adamvr/sqlc/internal/pg"
 )
 
 func TestColumnsToStruct(t *testing.T) {

@@ -4,7 +4,7 @@ import (
 	"path/filepath"
 	"testing"
 
-	"github.com/kyleconroy/sqlc/internal/pg"
+	"github.com/adamvr/sqlc/internal/pg"
 
 	"github.com/google/go-cmp/cmp"
 )

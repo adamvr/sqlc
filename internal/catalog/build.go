@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/kyleconroy/sqlc/internal/pg"
+	"github.com/adamvr/sqlc/internal/pg"
 
 	"github.com/davecgh/go-spew/spew"
 	nodes "github.com/lfittl/pg_query_go/nodes"

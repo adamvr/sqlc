@@ -9,7 +9,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/kyleconroy/sqlc/internal/pg"
+	"github.com/adamvr/sqlc/internal/pg"
 )
 
 const errMessageNoVersion = `The configuration file must have a version number.

@@ -12,9 +12,9 @@ import (
 	"strings"
 	"unicode"
 
-	"github.com/kyleconroy/sqlc/internal/catalog"
-	core "github.com/kyleconroy/sqlc/internal/pg"
-	"github.com/kyleconroy/sqlc/internal/postgres"
+	"github.com/adamvr/sqlc/internal/catalog"
+	core "github.com/adamvr/sqlc/internal/pg"
+	"github.com/adamvr/sqlc/internal/postgres"
 
 	"github.com/davecgh/go-spew/spew"
 	pg "github.com/lfittl/pg_query_go"
